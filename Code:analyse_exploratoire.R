@@ -75,7 +75,7 @@ ggplot(df_pct, aes(x = Espece, y = pourcentage, fill = Semence_certifiee)) +
   theme_minimal()
 
 # ------------------------------------------------------------
-# 3. Variétés d'arachide adaptés a chaque département
+# 3. Variété d'arachide adapté a chaque département
 # ------------------------------------------------------------
 
 ggplot(arachide_data,
