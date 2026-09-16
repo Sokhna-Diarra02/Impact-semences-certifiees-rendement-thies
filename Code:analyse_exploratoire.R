@@ -48,29 +48,28 @@ df_pct <- df %>%
   group_by(Espece) %>%
   mutate(pourcentage = n / sum(n))
 
-ggplot(
-  df_pct,
-  aes(
-    x = Espece,
-    y = pourcentage,
-    fill = Semence_certifiee
-  )
-) +
+ggplot(df_pct, aes(x = Espece, y = pourcentage, fill = Semence_certifiee)) +
   geom_col(position = position_dodge(width = 0.8)) +
+  
   geom_text(
     aes(label = percent(pourcentage, accuracy = 1)),
     position = position_dodge(width = 0.8),
     vjust = -0.3,
     size = 3.5
-  ) +
-  scale_y_continuous(
+  ) + scale_y_continuous(
     labels = percent_format(accuracy = 1),
-    limits = c(0, 1.05)
+    limits = c(0, 1.05)    ) +
+  
+  scale_fill_manual(
+    values = c(
+      "oui" = "black",
+      "Non" = "#D55E00"
+    )
   ) +
   labs(
-    title = "Taux d'adoption des semences certifiées par espèce",
+    title = "Taux d'adoption des semence certifié par espéce",
     x = "Espèces cultivées",
     y = "Pourcentage (%)",
-    fill = "Semence certifiée"
+    fill = "semence certifiée"
   ) +
   theme_minimal()
