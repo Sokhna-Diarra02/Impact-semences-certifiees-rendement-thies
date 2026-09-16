@@ -73,3 +73,34 @@ ggplot(df_pct, aes(x = Espece, y = pourcentage, fill = Semence_certifiee)) +
     fill = "semence certifiée"
   ) +
   theme_minimal()
+
+# ------------------------------------------------------------
+# 3. Variétés d'arachide adaptés a chaque département
+# ------------------------------------------------------------
+
+ggplot(arachide_data,
+       aes(x = Variétés,
+           y = Rendement,
+           fill = Variétés)) +
+
+  geom_boxplot(show.legend = TRUE) +
+
+  facet_wrap(~ Départements) +
+
+  labs(
+    title = "rendements  d’arachide par rapport aux variétés culivées dans chaque département",
+    x = "Variété cultivée",
+    y = "Rendement (t/ha)",
+    fill = "Variété"
+  ) +
+
+  coord_flip() +   
+
+  theme_minimal() +
+
+  theme(
+    axis.text.x = element_text(size = 9),
+    axis.text.y = element_text(size = 9),
+    strip.text = element_text(face = "bold"),
+    legend.position = "right"
+  )
