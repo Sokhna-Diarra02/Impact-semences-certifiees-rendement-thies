@@ -104,3 +104,25 @@ ggplot(arachide_data,
     strip.text = element_text(face = "bold"),
     legend.position = "right"
   )
+
+# ------------------------------------------------------------
+#4. comparaison de rendement avec Kruskal test
+# ------------------------------------------------------------
+```{r}
+comparaison <- list(
+  c("Arachide","Maïs"),
+  c("Arachide", "Mil"),
+  c("Arachide","NIEBE"),
+  c("Arachide", "SORGHO")
+)
+```
+
+```{r}
+ggplot(df, aes(x = Espece, y = Rendement, fill = Espece)) +
+  geom_boxplot() +
+  stat_compare_means(method = "kruskal.test") + 
+  stat_compare_means(comparison = comparaison, 
+                     method = "wilcox.test",
+                     exact = FALSE,
+                     label = "p.signif")
+```
